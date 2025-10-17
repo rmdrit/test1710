@@ -1,0 +1,60 @@
+table DimLocation
+	lineageTag: d88ab5ac-acd0-4db7-b5e6-ee9dade8d7f3
+
+	column LocationDimKey
+		dataType: string
+		lineageTag: c4c4d030-c898-4832-85fe-36bc881a56de
+		summarizeBy: none
+		sourceColumn: LocationDimKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 1df1b622-cc8a-4ea1-9f70-ddf081c3ccbe
+		dataCategory: Country
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Latitude
+		dataType: string
+		lineageTag: 4b3b029c-4902-4d34-bbb4-a5280fcbffca
+		dataCategory: Latitude
+		summarizeBy: none
+		sourceColumn: Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+	column Longitude
+		dataType: string
+		lineageTag: 6b198fe4-33df-4be0-8245-cbe6b5dc732f
+		dataCategory: Longitude
+		summarizeBy: none
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 47a9383c-d78a-4fa8-9089-c7db614cf6f3
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimLocation = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\rmori\Downloads\Intro-Brief_Challenge-29_English\Sports_Injuries_Star_Schema_English_C29.xlsx"), null, true),
+				    DimLocation_Sheet = Source{[Item="DimLocation",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(DimLocation_Sheet, [PromoteAllScalars=true])
+				in
+				    #"Promoted Headers"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

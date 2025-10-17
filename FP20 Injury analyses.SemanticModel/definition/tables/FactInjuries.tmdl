@@ -1,0 +1,159 @@
+table FactInjuries
+	lineageTag: aa344436-9f4f-438b-9f00-97b16796b57b
+
+	column InjuryID
+		dataType: string
+		lineageTag: 54b12ec6-dbb6-4a78-a2ba-6e3bb9b811ac
+		summarizeBy: none
+		sourceColumn: InjuryID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlayerDimKey
+		dataType: string
+		lineageTag: 90775399-4646-4721-a13f-64258e65e104
+		summarizeBy: none
+		sourceColumn: PlayerDimKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column InjuryTypeDimKey
+		dataType: string
+		lineageTag: 27aebc87-e51e-4ff4-b2aa-e1d5e1df189d
+		summarizeBy: none
+		sourceColumn: InjuryTypeDimKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationDimKey
+		dataType: string
+		lineageTag: 3abea0ab-9359-49ad-9c6e-6e22b3e5625f
+		summarizeBy: none
+		sourceColumn: LocationDimKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ClubDimKey
+		dataType: string
+		lineageTag: 66ec22d5-f17e-4da5-8bd7-254acf31bf82
+		summarizeBy: none
+		sourceColumn: ClubDimKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column EventDimKey
+		dataType: string
+		lineageTag: d40f80f9-84a2-4e04-ab94-1b46ce5c7886
+		summarizeBy: none
+		sourceColumn: EventDimKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column TreatmentDimKey
+		dataType: string
+		lineageTag: aac4f769-8fea-4459-9327-a1c0b2440d5e
+		summarizeBy: none
+		sourceColumn: TreatmentDimKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CoachDimKey
+		dataType: string
+		lineageTag: bfb7b63a-05be-467b-a782-51b5c05af8e2
+		summarizeBy: none
+		sourceColumn: CoachDimKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column InjuryDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7efeb70b-4001-4012-81f5-8f65ba17c92c
+		summarizeBy: none
+		sourceColumn: InjuryDate
+
+		variation Variation
+			isDefault
+			relationship: 4dde34d5-a3d0-4e88-9522-145eebb53ec4
+			defaultHierarchy: LocalDateTable_9b521ee9-40a9-4746-95e8-465230d717c9.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ReturnDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 45911369-c842-46cd-b604-7f853342dd15
+		summarizeBy: none
+		sourceColumn: ReturnDate
+
+		variation Variation
+			isDefault
+			relationship: c2c3aded-99e0-4638-8669-2f49a88c98c6
+			defaultHierarchy: LocalDateTable_6d2fc762-9b0d-49f2-a85b-6b2489d3a2d0.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Season
+		dataType: string
+		lineageTag: fca616c3-7fe1-4e80-a29d-13a511a35cf5
+		summarizeBy: none
+		sourceColumn: Season
+
+		annotation SummarizationSetBy = Automatic
+
+	column DaysToRecovery
+		dataType: int64
+		formatString: 0
+		lineageTag: d4baf427-bca8-4590-8a04-ada90d33073f
+		summarizeBy: average
+		sourceColumn: DaysToRecovery
+
+		annotation SummarizationSetBy = User
+
+	column MinutesPlayedLast30Days
+		dataType: int64
+		formatString: 0
+		lineageTag: ba4a6245-bab5-4dfc-9348-a68854796d93
+		summarizeBy: sum
+		sourceColumn: MinutesPlayedLast30Days
+
+		annotation SummarizationSetBy = Automatic
+
+	column CostOfTreatmentEuros
+		dataType: double
+		lineageTag: bb0d87e2-129a-4dde-973e-d3398b4697e9
+		summarizeBy: sum
+		sourceColumn: CostOfTreatmentEuros
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EstimatedDaysAbsent
+		dataType: int64
+		formatString: 0
+		lineageTag: 03f2321c-80db-4c21-a16b-36c7f016d7fe
+		summarizeBy: sum
+		sourceColumn: EstimatedDaysAbsent
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactInjuries = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\rmori\Downloads\Intro-Brief_Challenge-29_English\Sports_Injuries_Star_Schema_English_C29.xlsx"), null, true),
+				    FactInjuries_Sheet = Source{[Item="FactInjuries",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(FactInjuries_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"DaysToRecovery", Int64.Type}, {"InjuryDate", type date}, {"ReturnDate", type date}, {"EstimatedDaysAbsent", Int64.Type}, {"CostOfTreatmentEuros", type number}, {"MinutesPlayedLast30Days", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,65 @@
+table DimInjuryType
+	lineageTag: 9fb2ce16-1451-4353-84c1-4affd4f7e61d
+
+	column InjuryTypeDimKey
+		dataType: string
+		lineageTag: 0e6522b8-e9ac-42a4-841d-bf606e2237a8
+		summarizeBy: none
+		sourceColumn: InjuryTypeDimKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column InjuryType
+		dataType: string
+		lineageTag: 6dc5f4a0-557b-4fb6-ba7c-4e9d61bb5dfd
+		summarizeBy: none
+		sourceColumn: InjuryType
+
+		annotation SummarizationSetBy = Automatic
+
+	column BodyPart
+		dataType: string
+		lineageTag: 50bb8f80-fa62-4e12-8e29-0943cebf1838
+		summarizeBy: none
+		sourceColumn: BodyPart
+
+		annotation SummarizationSetBy = Automatic
+
+	column Severity
+		dataType: string
+		lineageTag: 66dc44a6-9f7f-4833-bd44-c5ce440695df
+		summarizeBy: none
+		sourceColumn: Severity
+
+		annotation SummarizationSetBy = Automatic
+
+	column InjuryCause
+		dataType: string
+		lineageTag: b67597d3-67fe-4af1-9494-c0f993690109
+		summarizeBy: none
+		sourceColumn: InjuryCause
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsRecurrentInjury
+		dataType: string
+		lineageTag: e03d5470-7ca9-4509-8c65-b299bf4ad4b5
+		summarizeBy: none
+		sourceColumn: IsRecurrentInjury
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimInjuryType = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\rmori\Downloads\Intro-Brief_Challenge-29_English\Sports_Injuries_Star_Schema_English_C29.xlsx"), null, true),
+				    DimInjuryType_Sheet = Source{[Item="DimInjuryType",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(DimInjuryType_Sheet, [PromoteAllScalars=true])
+				in
+				    #"Promoted Headers"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

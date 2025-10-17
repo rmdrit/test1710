@@ -1,0 +1,33 @@
+table DimCoach
+	lineageTag: f3982194-528a-428e-ab57-eaa652fd469a
+
+	column CoachDimKey
+		dataType: string
+		lineageTag: cd6806c7-1edc-4d15-b080-72e9ff338664
+		summarizeBy: none
+		sourceColumn: CoachDimKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CoachTrainerName
+		dataType: string
+		lineageTag: bf6a7c78-8df1-47c2-8665-b124d9bf3fbf
+		summarizeBy: none
+		sourceColumn: CoachTrainerName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimCoach = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\rmori\Downloads\Intro-Brief_Challenge-29_English\Sports_Injuries_Star_Schema_English_C29.xlsx"), null, true),
+				    DimCoach_Sheet = Source{[Item="DimCoach",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(DimCoach_Sheet, [PromoteAllScalars=true])
+				in
+				    #"Promoted Headers"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

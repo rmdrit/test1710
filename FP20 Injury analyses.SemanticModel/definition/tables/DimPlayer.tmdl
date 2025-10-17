@@ -1,0 +1,49 @@
+table DimPlayer
+	lineageTag: 53a1d4b9-ed69-4158-9765-4423ce5dab7b
+
+	column PlayerDimKey
+		dataType: string
+		lineageTag: b09e20bf-bd5c-4ee9-aca3-cac61356abd3
+		summarizeBy: none
+		sourceColumn: PlayerDimKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlayerName
+		dataType: string
+		lineageTag: a2eb5d5a-6190-4837-a274-3d90494865aa
+		summarizeBy: none
+		sourceColumn: PlayerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: 35fc0af9-94c6-48e1-a1c3-6968b17dc4e5
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: string
+		lineageTag: 0768cfe1-aa32-496c-af28-fe83fcf41700
+		summarizeBy: none
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimPlayer = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\rmori\Downloads\Intro-Brief_Challenge-29_English\Sports_Injuries_Star_Schema_English_C29.xlsx"), null, true),
+				    DimPlayer_Sheet = Source{[Item="DimPlayer",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(DimPlayer_Sheet, [PromoteAllScalars=true])
+				in
+				    #"Promoted Headers"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
