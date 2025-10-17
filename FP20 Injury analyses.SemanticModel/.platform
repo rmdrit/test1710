@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "FP20 Injury analyses"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "2bb5c0bd-3d55-97e6-4017-ffdfcf226b19"
+  }
+}

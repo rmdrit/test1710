@@ -1,0 +1,27 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DimClub","DimCoach","DimEvent","DimInjuryType","DimLocation","DimPlayer","DimTreatment","FactInjuries","Summary"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+ref table DimClub
+ref table DimCoach
+ref table DimEvent
+ref table DimInjuryType
+ref table DimLocation
+ref table DimPlayer
+ref table DimTreatment
+ref table FactInjuries
+ref table Summary
+ref table DateTableTemplate_db883cd5-83d7-49d2-93f0-4d6b9407d21d
+ref table LocalDateTable_9b521ee9-40a9-4746-95e8-465230d717c9
+ref table LocalDateTable_6d2fc762-9b0d-49f2-a85b-6b2489d3a2d0
+
+ref cultureInfo en-US
+

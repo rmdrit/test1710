@@ -1,0 +1,41 @@
+table DimTreatment
+	lineageTag: d7b76ee2-bf70-4a31-a469-511301f342f1
+
+	column TreatmentDimKey
+		dataType: string
+		lineageTag: 30cfd79d-4115-422d-8c45-5eb75ab71a4f
+		summarizeBy: none
+		sourceColumn: TreatmentDimKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column TreatmentMethod
+		dataType: string
+		lineageTag: eb2c5a8a-8af3-4c9c-93a3-9943efcae2c2
+		summarizeBy: none
+		sourceColumn: TreatmentMethod
+
+		annotation SummarizationSetBy = Automatic
+
+	column Outcome
+		dataType: string
+		lineageTag: 2980d509-8da7-4edf-a4d7-e6a5d8e13ea3
+		summarizeBy: none
+		sourceColumn: Outcome
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimTreatment = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\rmori\Downloads\Intro-Brief_Challenge-29_English\Sports_Injuries_Star_Schema_English_C29.xlsx"), null, true),
+				    DimTreatment_Sheet = Source{[Item="DimTreatment",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(DimTreatment_Sheet, [PromoteAllScalars=true])
+				in
+				    #"Promoted Headers"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

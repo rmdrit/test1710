@@ -1,0 +1,57 @@
+table Summary
+	lineageTag: 7afcabe4-c1f9-48b3-bc70-7ba27d45f3c2
+
+	column 'Table Name'
+		dataType: string
+		lineageTag: e33613ae-2145-486b-a12a-4df256d3f3c2
+		summarizeBy: none
+		sourceColumn: Table Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Table Type'
+		dataType: string
+		lineageTag: 490bf34f-0ead-4328-bb2c-a9a109a723a8
+		summarizeBy: none
+		sourceColumn: Table Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Record Count'
+		dataType: string
+		lineageTag: 35b25eb0-8c1f-46f1-81fe-263208d70e17
+		summarizeBy: none
+		sourceColumn: Record Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Column Count'
+		dataType: string
+		lineageTag: 461d523b-5e12-4675-a5ff-fe177bf565ac
+		summarizeBy: none
+		sourceColumn: Column Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: b0ef7b63-d97b-463d-a598-c624398eec38
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Summary = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\rmori\Downloads\Intro-Brief_Challenge-29_English\Sports_Injuries_Star_Schema_English_C29.xlsx"), null, true),
+				    Summary_Sheet = Source{[Item="Summary",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Summary_Sheet, [PromoteAllScalars=true])
+				in
+				    #"Promoted Headers"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

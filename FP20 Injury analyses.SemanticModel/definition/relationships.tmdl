@@ -1,0 +1,40 @@
+relationship AutoDetected_63ece652-ed14-436a-ab34-a0059cc7fb56
+	fromColumn: FactInjuries.ClubDimKey
+	toColumn: DimClub.ClubDimKey
+
+relationship AutoDetected_189223ad-1c30-46ff-99b0-c747fc21e71b
+	fromColumn: FactInjuries.CoachDimKey
+	toColumn: DimCoach.CoachDimKey
+
+relationship AutoDetected_5a857d2a-e49f-45e0-859f-3ad2cb59bfcf
+	fromColumn: FactInjuries.EventDimKey
+	toColumn: DimEvent.EventDimKey
+
+relationship AutoDetected_3e03b444-010e-40c2-81b5-392af99a7b26
+	fromColumn: FactInjuries.InjuryTypeDimKey
+	toColumn: DimInjuryType.InjuryTypeDimKey
+
+relationship AutoDetected_6c8b3ba9-ffd6-4f5d-90ba-129a4966ccd8
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: FactInjuries.LocationDimKey
+	toColumn: DimLocation.LocationDimKey
+
+relationship AutoDetected_9e40e3c8-2dd9-44df-aa6a-3f257bed48b7
+	fromColumn: FactInjuries.PlayerDimKey
+	toColumn: DimPlayer.PlayerDimKey
+
+relationship AutoDetected_55e825d5-8c57-4aed-a756-68aafd3ef691
+	fromColumn: FactInjuries.TreatmentDimKey
+	toColumn: DimTreatment.TreatmentDimKey
+
+relationship 4dde34d5-a3d0-4e88-9522-145eebb53ec4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactInjuries.InjuryDate
+	toColumn: LocalDateTable_9b521ee9-40a9-4746-95e8-465230d717c9.Date
+
+relationship c2c3aded-99e0-4638-8669-2f49a88c98c6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactInjuries.ReturnDate
+	toColumn: LocalDateTable_6d2fc762-9b0d-49f2-a85b-6b2489d3a2d0.Date
+

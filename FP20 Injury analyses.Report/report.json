@@ -1,0 +1,90 @@
+{
+  "config": "{\"version\":\"5.66\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU10\",\"type\":2,\"version\":{\"visual\":\"1.8.95\",\"report\":\"2.0.95\",\"page\":\"1.3.95\"}}},\"activeSectionIndex\":1,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU10",
+            "path": "BaseThemes/CY24SU10.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Location",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "04baf87a888334a2faa7",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"eada2bc0515425f327f9\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10.79258010118044,\"y\":52.88364249578415,\"z\":0,\"width\":1269.2074198988196,\"height\":666.9814502529512,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"map\",\"projections\":{\"Category\":[{\"queryRef\":\"DimLocation.Country\",\"active\":true}],\"Size\":[{\"queryRef\":\"Avg(FactInjuries.DaysToRecovery)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimLocation\",\"Type\":0},{\"Name\":\"f\",\"Entity\":\"FactInjuries\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Country\"},\"Name\":\"DimLocation.Country\",\"NativeReferenceName\":\"Country\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"DaysToRecovery\"}},\"Function\":1},\"Name\":\"Avg(FactInjuries.DaysToRecovery)\",\"NativeReferenceName\":\"Average of DaysToRecovery\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"bubbles\":[{\"properties\":{\"bubbleSize\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"heatMap\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"dataPoint\":[{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DimLocation\"}},\"Property\":\"Country\"}},\"Function\":3}}}}}},\"selector\":{\"data\":[{\"dataViewWildcard\":{\"matchingOption\":1}}]}}]}}}",
+          "filters": "[]",
+          "height": 666.98,
+          "width": 1269.21,
+          "x": 10.79,
+          "y": 52.88,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "a3767e0c97c8bda4e03b",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"0c9a518b7c9c5aee9437\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10.189054726368159,\"y\":0,\"z\":0,\"width\":630.4477611940298,\"height\":343.8805970149254,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"clusteredBarChart\",\"projections\":{\"Category\":[{\"queryRef\":\"DimInjuryType.BodyPart\",\"active\":true}],\"Y\":[{\"queryRef\":\"CountNonNull(DimInjuryType.BodyPart)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimInjuryType\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"BodyPart\"},\"Name\":\"DimInjuryType.BodyPart\",\"NativeReferenceName\":\"BodyPart\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"BodyPart\"}},\"Function\":5},\"Name\":\"CountNonNull(DimInjuryType.BodyPart)\",\"NativeReferenceName\":\"Count of BodyPart\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"BodyPart\"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 343.88,
+          "width": 630.45,
+          "x": 10.19,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"9daaa945893c0d17b173\",\"layouts\":[{\"id\":0,\"position\":{\"x\":653.3731343283582,\"y\":16.557213930348258,\"z\":2000,\"width\":617.7114427860696,\"height\":343.8805970149254,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"clusteredBarChart\",\"projections\":{\"Category\":[{\"queryRef\":\"DimInjuryType.InjuryCause\",\"active\":true}],\"Y\":[{\"queryRef\":\"CountNonNull(DimInjuryType.InjuryCause)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimInjuryType\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"InjuryCause\"},\"Name\":\"DimInjuryType.InjuryCause\",\"NativeReferenceName\":\"InjuryCause\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"InjuryCause\"}},\"Function\":5},\"Name\":\"CountNonNull(DimInjuryType.InjuryCause)\",\"NativeReferenceName\":\"Count of InjuryCause\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"InjuryCause\"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 343.88,
+          "width": 617.71,
+          "x": 653.37,
+          "y": 16.56,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"a36e292030a0936de60a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":640.636815920398,\"y\":360.4378109452736,\"z\":3000,\"width\":617.7114427860696,\"height\":343.8805970149254,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"clusteredBarChart\",\"projections\":{\"Category\":[{\"queryRef\":\"DimInjuryType.InjuryType\",\"active\":true}],\"Y\":[{\"queryRef\":\"CountNonNull(DimInjuryType.InjuryType)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimInjuryType\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"InjuryType\"},\"Name\":\"DimInjuryType.InjuryType\",\"NativeReferenceName\":\"InjuryType\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"InjuryType\"}},\"Function\":5},\"Name\":\"CountNonNull(DimInjuryType.InjuryType)\",\"NativeReferenceName\":\"Count of InjuryType\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"InjuryType\"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 343.88,
+          "width": 617.71,
+          "x": 640.64,
+          "y": 360.44,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"fe99ad60d8994f8dbadb\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10.189054726368159,\"y\":394.8258706467662,\"z\":1000,\"width\":630.4477611940298,\"height\":303.1243781094527,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"clusteredBarChart\",\"projections\":{\"Category\":[{\"queryRef\":\"DimInjuryType.Severity\",\"active\":true}],\"Y\":[{\"queryRef\":\"CountNonNull(DimInjuryType.Severity)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimInjuryType\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Severity\"},\"Name\":\"DimInjuryType.Severity\",\"NativeReferenceName\":\"Severity\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Severity\"}},\"Function\":5},\"Name\":\"CountNonNull(DimInjuryType.Severity)\",\"NativeReferenceName\":\"Count of Severity\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Severity\"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 303.12,
+          "width": 630.45,
+          "x": 10.19,
+          "y": 394.83,
+          "z": 1000.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}

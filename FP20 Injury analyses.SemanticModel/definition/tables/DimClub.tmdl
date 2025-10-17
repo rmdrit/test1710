@@ -1,0 +1,57 @@
+table DimClub
+	lineageTag: 78bd227e-1087-4056-89a6-6de6e45ba26b
+
+	column ClubDimKey
+		dataType: string
+		lineageTag: ebbe4f2b-9b2c-4568-97bc-c488a256a7a9
+		summarizeBy: none
+		sourceColumn: ClubDimKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ClubTeamName
+		dataType: string
+		lineageTag: 809163b8-6001-4ddc-80ae-6ac2720896d8
+		summarizeBy: none
+		sourceColumn: ClubTeamName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sport
+		dataType: string
+		lineageTag: 6c50867b-9e0b-4b3e-9733-ece4db318175
+		summarizeBy: none
+		sourceColumn: Sport
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompetitionLevel
+		dataType: string
+		lineageTag: 41a6327b-27b6-4113-b9e4-93ff4ae09846
+		summarizeBy: none
+		sourceColumn: CompetitionLevel
+
+		annotation SummarizationSetBy = Automatic
+
+	column SurfaceType
+		dataType: string
+		lineageTag: cd6d424c-dbf2-49f7-b130-744fb62c4b76
+		summarizeBy: none
+		sourceColumn: SurfaceType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimClub = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\rmori\Downloads\Intro-Brief_Challenge-29_English\Sports_Injuries_Star_Schema_English_C29.xlsx"), null, true),
+				    DimClub_Sheet = Source{[Item="DimClub",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(DimClub_Sheet, [PromoteAllScalars=true])
+				in
+				    #"Promoted Headers"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

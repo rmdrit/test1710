@@ -1,0 +1,41 @@
+table DimEvent
+	lineageTag: 896a9177-5f39-4366-b74c-6d8d8c23919b
+
+	column EventDimKey
+		dataType: string
+		lineageTag: f8aee7ae-8d6a-4513-82b3-ad731cfb6326
+		summarizeBy: none
+		sourceColumn: EventDimKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column EventType
+		dataType: string
+		lineageTag: 2a336a1e-6be3-4e8a-8d9a-d0084146d069
+		summarizeBy: none
+		sourceColumn: EventType
+
+		annotation SummarizationSetBy = Automatic
+
+	column EventName
+		dataType: string
+		lineageTag: 0528d41c-fbac-4c02-a132-bea8337d236d
+		summarizeBy: none
+		sourceColumn: EventName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimEvent = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\rmori\Downloads\Intro-Brief_Challenge-29_English\Sports_Injuries_Star_Schema_English_C29.xlsx"), null, true),
+				    DimEvent_Sheet = Source{[Item="DimEvent",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(DimEvent_Sheet, [PromoteAllScalars=true])
+				in
+				    #"Promoted Headers"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
